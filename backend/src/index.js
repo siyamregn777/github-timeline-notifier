@@ -7,16 +7,31 @@ import { errorHandler } from "./middleware/errorHandler.js";
 dotenv.config();
 const app = express();
 
-// Enable CORS with proper configuration
-app.use(cors({
-  origin: "https://github-timeline-notifier1.vercel.app",
-  methods: ["GET", "POST", "OPTIONS"], // ✅ Add OPTIONS method
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
-}));
+// ✅ Enhanced CORS configuration
+const corsOptions = {
+  origin: [
+    "https://github-timeline-notifier1.vercel.app",
+    "http://localhost:3000",
+    "http://localhost:5173"
+  ],
+  methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "X-Requested-With",
+    "Accept",
+    "Origin"
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
 
-// Handle preflight requests explicitly
-app.options("*", cors()); // ✅ This handles all OPTIONS requests
+app.use(cors(corsOptions));
+
+// ✅ Handle OPTIONS preflight requests for specific routes
+app.options("/api/signup", cors(corsOptions));
+app.options("/api/update", cors(corsOptions));
+// Add other API routes as needed
 
 app.use(express.json());
 

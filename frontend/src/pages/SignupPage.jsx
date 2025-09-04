@@ -14,7 +14,7 @@ const SignupPage = () => {
     setLoading(true);
     try {
       // Replace with your backend endpoint
-      await axios.post("http://localhost:5000/api/signup", { email });
+      await axios.post("https://github-timeline-notifier.onrender.com/api/signup", { email });
       setStatus("✅ Thank you! You are now subscribed.");
       setEmail("");
     } catch (error) {

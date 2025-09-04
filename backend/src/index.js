@@ -12,7 +12,7 @@ app.use(express.json());
 
 // ✅ Configure CORS
 app.use(cors({
-  origin: ["http://localhost:5173", "https://your-frontend-url.vercel.app"], // allow local + deployed frontend
+  origin: ["http://localhost:5173", "https://github-timeline-notifier1.vercel.app/"], // allow local + deployed frontend
   methods: ["GET", "POST"],
   credentials: true
 }));

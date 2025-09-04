@@ -8,14 +8,14 @@ import { errorHandler } from "./middleware/errorHandler.js";
 dotenv.config();
 const app = express();
 
-app.use(express.json());
-
 // ✅ Configure CORS
 app.use(cors({
-  origin: ["http://localhost:5173", "https://github-timeline-notifier1.vercel.app/"], // allow local + deployed frontend
+  origin: "https://github-timeline-notifier1.vercel.app/", // allow local + deployed frontend
   methods: ["GET", "POST"],
   credentials: true
 }));
+
+app.use(express.json());
 
 // Routes
 app.use("/api", subscriberRoutes);
